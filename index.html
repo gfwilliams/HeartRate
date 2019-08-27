@@ -62,7 +62,7 @@ navigator.mediaDevices.enumerateDevices().then(function(devices) {
   }
 
   function startStream(stream) {
-    video.src = URL.createObjectURL(stream);
+    video.srcObject = stream;
     video.play();
     // Ready! Let's start drawing.
     requestAnimationFrame(draw);
