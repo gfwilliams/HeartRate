@@ -58,7 +58,13 @@ navigator.mediaDevices.enumerateDevices().then(function(devices) {
     bpm = document.getElementById("bpm");
     
     // Get the webcam's stream.
-    navigator.getUserMedia(constraints, startStream, function () {});
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then(startStream)
+        .catch(console.error)
+    } else {
+      navigator.getUserMedia(constraints, startStream, function () {});
+    }
   }
 
   function startStream(stream) {
